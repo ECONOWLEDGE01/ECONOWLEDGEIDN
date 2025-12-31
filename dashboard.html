@@ -1,483 +1,94 @@
-// ===== DASHBOARD & FEATURES DATA =====
-const dashboardHTML = `<!-- HOME SECTION -->
-<div class="section active" id="home-section">
-    <div class="welcome-section">
-        <div class="welcome-header">
-            <div class="welcome-greeting">
-                <span class="greeting-emoji">👋</span>
-                <span>Halo! Eno People</span>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard | Econowledge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="bg-decoration">
+        <img src="assets/images/gunungan.png" class="gunungan-watermark">
+    </div>
+
+    <div class="mobile-container">
+        
+        <header class="header-dashboard">
+            <div class="nav-top">
+                <img src="assets/images/logo-white.png" height="35" alt="Logo">
+                <i class="fas fa-bars" style="font-size:24px;"></i>
             </div>
-            <div class="welcome-subtitle">
-                Economy Meets Knowledge: Empowering Your Financial Future with EcoNowledge!
+
+            <div class="user-profile">
+                <div class="avatar-box">
+                    <img src="assets/images/user.jpg" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <div style="flex:1;">
+                    <h2 style="font-size:18px; font-weight:700; margin:0;">Halo! Eno People</h2>
+                    <p style="font-size:10px; font-style:italic; opacity:0.9;">Empowering Your Financial Future!</p>
+                </div>
             </div>
-        </div>
-    </div>
 
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="🔍">
-    </div>
+            <img src="assets/images/wayang.png" class="wayang-overlap" alt="Wayang">
+        </header>
 
-    <div class="features-grid">
-        <div class="feature-card" onclick="toggleSection('read')">
-            <div class="feature-icon">📖</div>
-            <div class="feature-title">ECONO READ</div>
-        </div>
-        <div class="feature-card" onclick="toggleSection('vision')">
-            <div class="feature-icon">🎬</div>
-            <div class="feature-title">ECONO VISION</div>
-        </div>
-        <div class="feature-card" onclick="toggleSection('listen')">
-            <div class="feature-icon">🎧</div>
-            <div class="feature-title">ECONO LISTEN</div>
-        </div>
-        <div class="feature-card" onclick="toggleSection('forum')">
-            <div class="feature-icon">💬</div>
-            <div class="feature-title">ECONO FORUM</div>
-        </div>
-        <div class="feature-card" onclick="toggleSection('alert')">
-            <div class="feature-icon">🔔</div>
-            <div class="feature-title">ECONO ALERT</div>
-        </div>
-        <div class="feature-card" onclick="toggleSection('insights')">
-            <div class="feature-icon">📊</div>
-            <div class="feature-title">ECONO INSIGHTS</div>
-        </div>
-    </div>
-</div>`;
-
-const featuresHTML = `<!-- ECONO READ SECTION -->
-<div class="section" id="read-section">
-    <div class="section-header">
-        <button class="back-btn" onclick="toggleSection('home')">←</button>
-        <div class="section-title">📖 ECONO READ</div>
-    </div>
-
-    <div class="inbox-label">All Inboxes</div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="🔍">
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">📕</div>
-            <div class="content-details">
-                <div class="content-title">Perdagaran Global: Wawasan Praktis dan Analisis Internasional</div>
-                <div class="content-author">by Goenita Farhat</div>
+        <div class="search-float">
+            <div class="search-box-neo">
+                <i class="fas fa-search" style="color:#333;"></i>
+                <input type="text" placeholder="Cari materi...">
             </div>
         </div>
-    </div>
 
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">📗</div>
-            <div class="content-details">
-                <div class="content-title">Mengusaha Ekonomi Digital: Sebuah Transformasi Mengguncang Landscape</div>
-                <div class="content-author">by Dr. Ahmadullah & Team</div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="icon-frame"><i class="fas fa-book-open"></i></div>
+                <span class="menu-label">ECONO READ</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon-frame"><i class="fas fa-eye"></i></div>
+                <span class="menu-label">ECONO VISION</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon-frame"><i class="fas fa-headphones-alt"></i></div>
+                <span class="menu-label">ECONO LISTEN</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon-frame"><i class="fas fa-comments"></i></div>
+                <span class="menu-label">ECONO FORUM</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon-frame alert"><i class="fas fa-bell"></i></div>
+                <span class="menu-label">ECONO ALERT</span>
+            </div>
+            <div class="menu-item">
+                <div class="icon-frame"><i class="fas fa-lightbulb"></i></div>
+                <span class="menu-label">ECONO INSIGHTS</span>
             </div>
         </div>
-    </div>
 
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">📙</div>
-            <div class="content-details">
-                <div class="content-title">Sebuah Perjalanan Ekonomi: Dinamika Pembangunan Modern</div>
-                <div class="content-author">by Dr. Muhammad Iqbal</div>
+        <div class="trending-section">
+            <h3 style="font-size:14px; font-weight:800; color:#333; margin-bottom:10px;">
+                TRENDING <i class="fas fa-chart-line"></i>
+            </h3>
+            <div class="trend-item">
+                <img src="assets/images/chart.jpg" class="trend-img">
+                <div>
+                    <p style="font-size:11px; font-weight:700; line-height:1.3;">
+                        IHSG Awal Maret Menguat, Saham Bank Besar Diborong Asing...
+                    </p>
+                </div>
             </div>
         </div>
+
+        <nav class="bottom-nav">
+            <i class="fas fa-home nav-icon active"></i>
+            <i class="fas fa-history nav-icon"></i>
+            <i class="far fa-user nav-icon"></i>
+        </nav>
+
     </div>
 
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">📕</div>
-            <div class="content-details">
-                <div class="content-title">Manajemen Uang: Kunci Stabilisasi Deba Menuju Kesuksesan Finansial</div>
-                <div class="content-author">by Sarah Supardi</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">📗</div>
-            <div class="content-details">
-                <div class="content-title">Perdagaran Indonesia: Perjalanan Perdagaran dan Globalisasi Pembangunan</div>
-                <div class="content-author">by Dr. Bambang Prayitno</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ECONO VISION SECTION -->
-<div class="section" id="vision-section">
-    <div class="section-header">
-        <button class="back-btn" onclick="toggleSection('home')">←</button>
-        <div class="section-title">🎬 ECONO VISION</div>
-    </div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="🔍">
-    </div>
-
-    <div class="video-container">
-        <div class="video-player">
-            <button class="play-button">▶</button>
-        </div>
-        <div class="video-info">
-            <div class="video-title">IHSG Hari Ini: Saham BBRI, BMRI & BBCA Menguat Trillion</div>
-            <div class="video-description">Rangkuman pergerakan pasar saham hari ini dengan analisis mendalam tentang pengaruh ekonomi global.</div>
-            <div class="video-progress">
-                <div class="progress-bar"><div class="progress-fill"></div></div>
-                <div class="time-text">0:12 / 1:05</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ECONO LISTEN SECTION -->
-<div class="section" id="listen-section">
-    <div class="section-header">
-        <button class="back-btn" onclick="toggleSection('home')">←</button>
-        <div class="section-title">🎧 ECONO LISTEN</div>
-    </div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="🔍">
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">🎙️</div>
-            <div class="content-details">
-                <div class="content-title">Pengetahuan Ekonomi Dasar untuk Investor Pemula</div>
-                <div class="content-author">EcoNowledge • 25 min</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">🎙️</div>
-            <div class="content-details">
-                <div class="content-title">Strategi Investasi dalam Era Digital yang Berkembang Pesat</div>
-                <div class="content-author">EcoNowledge • 32 min</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">🎙️</div>
-            <div class="content-details">
-                <div class="content-title">Analisis Pasar Cryptocurrency Terkini dan Tren Masa Depan</div>
-                <div class="content-author">EcoNowledge • 28 min</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">🎙️</div>
-            <div class="content-details">
-                <div class="content-title">Membangun Portofolio Investasi yang Kuat untuk Masa Depan Cerah</div>
-                <div class="content-author">EcoNowledge • 35 min</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">🎙️</div>
-            <div class="content-details">
-                <div class="content-title">Entrepreneur Muda: Memulai Bisnis dengan Modal Minimal</div>
-                <div class="content-author">EcoNowledge • 40 min</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ECONO FORUM SECTION -->
-<div class="section" id="forum-section">
-    <div class="section-header">
-        <button class="back-btn" onclick="toggleSection('home')">←</button>
-        <div class="section-title">💬 ECONO FORUM</div>
-    </div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="🔍">
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-header">
-            <div class="forum-avatar">E</div>
-            <div class="forum-user-info">
-                <div class="forum-user">EKOFORUM INDONESIA</div>
-                <div class="forum-description">@EconomyMirror</div>
-            </div>
-        </div>
-        <div class="forum-topic">Diskusi tentang inflasi dan dampaknya terhadap daya beli masyarakat</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-header">
-            <div class="forum-avatar">D</div>
-            <div class="forum-user-info">
-                <div class="forum-user">DIANDRA EKONOMI</div>
-                <div class="forum-description">@InvestorMuda</div>
-            </div>
-        </div>
-        <div class="forum-topic">Bagaimana cara memulai investasi dengan modal kecil?</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-header">
-            <div class="forum-avatar">D</div>
-            <div class="forum-user-info">
-                <div class="forum-user">DISKURSUS EKONOMI NASIONAL</div>
-                <div class="forum-description">Diskusi populer</div>
-            </div>
-        </div>
-        <div class="forum-topic">Analisis Kebijakan Moneter Bank Indonesia Terbaru</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-header">
-            <div class="forum-avatar">S</div>
-            <div class="forum-user-info">
-                <div class="forum-user">SINERGI EKONOMI FORUM</div>
-                <div class="forum-description">@PenggunaProgresif</div>
-            </div>
-        </div>
-        <div class="forum-topic">Webinar: Prospek Ekonomi Digital 2025</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-header">
-            <div class="forum-avatar">M</div>
-            <div class="forum-user-info">
-                <div class="forum-user">MIMBAR EKONOMI KITA</div>
-                <div class="forum-description">@PenggunaPassar</div>
-            </div>
-        </div>
-        <div class="forum-topic">Tren Investasi dan Peluang Bisnis di Era Digital</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-header">
-            <div class="forum-avatar">W</div>
-            <div class="forum-user-info">
-                <div class="forum-user">WACANA EKONOMI PROGRESIF</div>
-                <div class="forum-description">Live Discussion</div>
-            </div>
-        </div>
-        <div class="forum-topic">Reformasi Perekonomian: Solusi Untuk Kesejahteraan Rakyat</div>
-    </div>
-</div>
-
-<!-- ECONO ALERT SECTION -->
-<div class="section" id="alert-section">
-    <div class="section-header">
-        <button class="back-btn" onclick="toggleSection('home')">←</button>
-        <div class="section-title">🔔 ECONO ALERT</div>
-    </div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="🔍">
-    </div>
-
-    <div class="inbox-label">All Inboxes</div>
-
-    <div class="alert-card breaking">
-        <div class="alert-title">🚨 BREAKING: Bank Indonesia Menaikkan Suku Bunga</div>
-        <div class="alert-description">Pertumbuhan ekonomi mencapai 5.2% tertinggi dalam 5 tahun terakhir yang menandakan pemulihan</div>
-        <div class="alert-date">30 Feb</div>
-    </div>
-
-    <div class="alert-card update">
-        <div class="alert-title">📊 UPDATE: Rupiah Mencapai Level 12% Terhadap Dollar</div>
-        <div class="alert-description">Pergerakan nilai tukar rupiah dalam pasar global terus menunjukkan stabilitas yang positif</div>
-        <div class="alert-date">30 Feb</div>
-    </div>
-
-    <div class="alert-card news">
-        <div class="alert-title">📢 TERKINI: Inflasi Februari Tercatat 3,1% Terhadap Bulan Sebelumnya</div>
-        <div class="alert-description">Data inflasi terbaru menunjukkan tren positif dalam stabilisasi harga komoditas dasar</div>
-        <div class="alert-date">30 Feb</div>
-    </div>
-
-    <div class="alert-card">
-        <div class="alert-title">💰 KABAR MODAL: IHSG Ditutup Melewati Level Penting 6.000 Poin</div>
-        <div class="alert-description">Indeks saham Indonesia mencatat rekor baru dalam perdagangan hari ini dengan volume tinggi</div>
-        <div class="alert-date">30 Feb</div>
-    </div>
-
-    <div class="alert-card update">
-        <div class="alert-title">💹 FISKAL: Pemerintah Berencana Terbitan Global Sukuk Danf Obligasi Domestik</div>
-        <div class="alert-description">Kebijakan fiskal pemerintah fokus pada pembangunan infrastruktur dan peningkatan investasi</div>
-        <div class="alert-date">30 Feb</div>
-    </div>
-
-    <div class="alert-card news">
-        <div class="alert-title">📈 FOREX: Pergerakan Rupiah Menguat Mencapai Target Investor Asing</div>
-        <div class="alert-description">Arus modal masuk ke pasar Indonesia terus meningkat mendorong penguatan nilai tukar rupiah</div>
-        <div class="alert-date">30 Feb</div>
-    </div>
-</div>
-
-<!-- ECONO INSIGHTS SECTION -->
-<div class="section" id="insights-section">
-    <div class="section-header">
-        <button class="back-btn" onclick="toggleSection('home')">←</button>
-        <div class="section-title">📊 ECONO INSIGHTS</div>
-    </div>
-
-    <div class="search-container">
-        <input type="text" class="search-bar" placeholder="🔍">
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">📈</div>
-            <div class="content-details">
-                <div class="content-title">IHSG Hari Ini: Menguat! Saham BBRI, BMCA, BMRI hingga UNVR Diborong Rp3 Triliun</div>
-                <div class="content-author">EcoNowledge • 1 jam</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">💹</div>
-            <div class="content-details">
-                <div class="content-title">IHSG Rebound Tembus 6.500, Saham Perbankan Jadi Favorit Investor</div>
-                <div class="content-author">EcoNowledge • 2 jam</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">📊</div>
-            <div class="content-details">
-                <div class="content-title">Indeks Harga Saham Gabungan: Tiga Rekomendasi Saham untuk Trading Pekan Ini</div>
-                <div class="content-author">EcoNowledge • 3 jam</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">💰</div>
-            <div class="content-details">
-                <div class="content-title">JP Morgan Naikkan Target Saham BBRI dan BMRI, Bagaimana Prospeknya?</div>
-                <div class="content-author">EcoNowledge • 4 jam</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="content-card">
-        <div class="content-card-inner">
-            <div class="content-thumbnail">🎯</div>
-            <div class="content-details">
-                <div class="content-title">Analisis Fundamental Saham ANTM: Potensi Kenaikan dan Risiko Investasi</div>
-                <div class="content-author">EcoNowledge • 5 jam</div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- PROFILE SECTION -->
-<div class="section" id="profile-section">
-    <div style="height: 20px;"></div>
-    <div class="profile-section">
-        <div class="profile-image">👩‍💼</div>
-        <div class="profile-name">Nama Pengguna</div>
-        <div class="profile-role">Member EcoNowledge</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-topic">⚙️ Pengaturan Profil</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-topic">📚 Riwayat Pembelajaran</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-topic">🏆 Sertifikat & Pencapaian</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-topic">🔔 Pengaturan Notifikasi</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-topic">❓ Bantuan & Dukungan</div>
-    </div>
-
-    <div class="forum-item">
-        <div class="forum-topic">🚪 Keluar dari Akun</div>
-    </div>
-</div>`;
-
-// ===== INITIALIZE APP =====
-document.addEventListener('DOMContentLoaded', function() {
-    const contentArea = document.getElementById('contentArea');
-    if (contentArea) {
-        contentArea.innerHTML = dashboardHTML + featuresHTML;
-    }
-    
-    const firstNavItem = document.querySelector('.nav-item');
-    if (firstNavItem) {
-        firstNavItem.classList.add('active');
-    }
-});
-
-// ===== LOGIN HANDLER =====
-function handleLogin(e) {
-    e.preventDefault();
-    document.getElementById('loginPage').classList.remove('active');
-    document.getElementById('appContainer').classList.add('active');
-}
-
-// ===== TOGGLE SECTION =====
-function toggleSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(s => s.classList.remove('active'));
-
-    const section = document.getElementById(sectionId + '-section');
-    if (section) {
-        section.classList.add('active');
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-
-    const titles = {
-        'home': '🌿 EcoNowledge',
-        'read': '📖 ECONO READ',
-        'vision': '🎬 ECONO VISION',
-        'listen': '🎧 ECONO LISTEN',
-        'forum': '💬 ECONO FORUM',
-        'alert': '🔔 ECONO ALERT',
-        'insights': '📊 ECONO INSIGHTS',
-        'profile': '👤 PROFIL'
-    };
-
-    const pageTitle = document.getElementById('pageTitle');
-    if (pageTitle && titles[sectionId]) {
-        pageTitle.innerText = titles[sectionId].split(' ')[1];
-    }
-}
-
-// ===== TOGGLE NAVIGATION =====
-function toggleNav(element, sectionId) {
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach(item => item.classList.remove('active'));
-    element.classList.add('active');
-    
-    if (sectionId === 'profile') {
-        toggleSection('profile');
-    } else if (sectionId === 'home') {
-        toggleSection('home');
-    }
-}
+</body>
+</html>
