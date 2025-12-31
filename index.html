@@ -2,94 +2,50 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoNowledge - Login</title>
-    <link rel="stylesheet" href="css/style-base.css">
-    <link rel="stylesheet" href="css/style-ui.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Login | Econowledge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <!-- LOGIN PAGE -->
-    <div class="login-container active" id="loginPage">
-        <div class="login-card">
-            <div class="logo-section">
-                <div class="logo-group">
-                    <div class="logo-icon">🌿</div>
-                    <div class="logo-text">EcoNowledge</div>
-                </div>
-                <div class="tagline">Education & Solutions</div>
-            </div>
 
-            <form class="login-form" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <input type="email" placeholder="Email address" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Enter password" required>
-                </div>
-
-                <div class="checkbox-group">
-                    <input type="checkbox" id="remember">
-                    <label for="remember">Remember me</label>
-                </div>
-
-                <button type="submit" class="btn-signup">Sign up</button>
-
-                <p class="terms-text">
-                    I agree to the platform's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
-                </p>
-
-                <div class="divider">or sign up with</div>
-
-                <div class="social-login">
-                    <button type="button" class="social-btn" title="Facebook">f</button>
-                    <button type="button" class="social-btn" title="Google">G</button>
-                    <button type="button" class="social-btn" title="Apple">🍎</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- MAIN APP -->
-    <div class="app-container" id="appContainer">
-        <!-- Header -->
-        <div class="header">
-            <div class="header-logo">
-                <div class="header-logo-icon">🌿</div>
-                <span id="pageTitle">EcoNowledge</span>
-            </div>
-            <button class="menu-toggle" onclick="toggleSection('profile')">☰</button>
+    <div class="mobile-container">
+        <div style="padding: 30px 25px;">
+            <img src="assets/images/logo.png" alt="Econowledge" style="width: 140px;">
         </div>
 
-        <!-- Content Area -->
-        <div class="content" id="contentArea">
-            <!-- Sections akan dimuat dari file terpisah -->
-        </div>
+        <div class="login-wrapper">
+            <div class="batik-frame">
+                <img src="assets/images/ranting-kiri.png" class="decor-leaf leaf-top">
+                <img src="assets/images/ranting-kanan.png" class="decor-leaf leaf-bottom">
 
-        <!-- Bottom Navigation -->
-        <div class="bottom-nav">
-            <div class="nav-item active" onclick="toggleNav(this, 'home')">
-                <span>🏠</span>
-                <span class="nav-label">Home</span>
-            </div>
-            <div class="nav-item" onclick="toggleNav(this, 'trending')">
-                <span>⚡</span>
-                <span class="nav-label">Trending</span>
-            </div>
-            <div class="nav-item" onclick="toggleNav(this, 'create')">
-                <span>➕</span>
-                <span class="nav-label">Create</span>
-            </div>
-            <div class="nav-item" onclick="toggleNav(this, 'saved')">
-                <span>📌</span>
-                <span class="nav-label">Saved</span>
-            </div>
-            <div class="nav-item" onclick="toggleNav(this, 'profile')">
-                <span>👤</span>
-                <span class="nav-label">Profile</span>
+                <div class="login-card">
+                    <h1 class="title-login">Selamat Datang</h1>
+                    
+                    <form onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+                        <input type="email" placeholder="Email address" class="input-neo" required>
+                        <input type="password" placeholder="Enter password" class="input-neo" required>
+                        
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:15px; color:white; font-size:12px; font-weight:600;">
+                            <input type="checkbox"> Remember me
+                        </div>
+
+                        <button type="submit" class="btn-primary-neo">Sign up</button>
+                    </form>
+
+                    <p style="color:white; font-size:11px; margin:15px 0;">
+                        or sign up with
+                    </p>
+
+                    <div style="display:flex; justify-content:center; gap:15px;">
+                        <div class="social-circle"><i class="fab fa-facebook-f" style="color:#1877F2"></i></div>
+                        <div class="social-circle"><i class="fab fa-google" style="color:#EA4335"></i></div>
+                        <div class="social-circle"><i class="fab fa-apple" style="color:black"></i></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="js/app.js"></script>
 </body>
 </html>
