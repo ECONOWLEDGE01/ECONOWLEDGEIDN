@@ -1,0 +1,100 @@
+/* GLOBAL BACKGROUND */
+body {
+  background: linear-gradient(180deg, #7bc043 0%, #cde77f 45%, #f9f871 100%);
+  min-height: 100vh;
+}
+
+/* ORNAMEN UI */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 220px;
+  height: 220px;
+  background: rgba(90, 80, 40, 0.15);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+body::before {
+  top: -60px;
+  right: -60px;
+}
+
+body::after {
+  bottom: -80px;
+  left: -80px;
+}
+
+/* LOGIN UI */
+.login-box {
+  background: #4caf50;
+  color: white;
+}
+
+.login-page {
+  background: linear-gradient(#cde77f, #f9f871);
+}
+
+.btn {
+  background: orange;
+  color: white;
+}
+
+/* HEADER */
+.topbar {
+  background: #66bb2f;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* HERO */
+.hero {
+  background: linear-gradient(#66bb2f, #cde77f);
+  color: white;
+}
+
+/* SEARCH */
+.search-box {
+  background: #ffffff;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+}
+
+/* MENU */
+.menu {
+  background: linear-gradient(#8bc34a, #66bb2f);
+  color: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease;
+}
+
+.menu:hover {
+  transform: scale(1.05);
+}
+
+/* HIGHLIGHT */
+.highlight {
+  background: white;
+  border: 4px solid #9ccc65;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.highlight p {
+  background: #f1f8e9;
+  border-top: 2px dashed #8bc34a;
+  font-weight: bold;
+}
+
+/* TRENDING */
+.trending {
+  background: #dcedc8;
+}
+
+.trend-card {
+  background: white;
+}
+
+/* FOOTER */
+.footer {
+  background: #eee;
+}
