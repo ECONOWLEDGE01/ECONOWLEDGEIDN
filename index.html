@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econowledge Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style-base.css">
+    <link rel="stylesheet" href="style-ui.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div id="page-dashboard" class="page-section active">
+            <header>
+                <div class="logo">
+                    <img src="assets/logo-econowledge.png" alt="Econowledge Logo" style="background:white; border-radius:5px; padding:2px;">
+                </div>
+                <div class="menu-burger"><i class="fas fa-bars"></i></div>
+            </header>
+
+            <div class="hero-section">
+                <div class="hero-text">
+                    <div class="avatar-small" style="display:inline-block; vertical-align:middle; width:40px; height:40px; background:white; border-radius:50%; margin-right:10px;">
+                        <img src="assets/mask-icon.png" alt="User" style="width:100%; border-radius:50%;">
+                    </div>
+                    <div style="display:inline-block; vertical-align:middle;">
+                        <h2>Halo! Eno People</h2>
+                        <p>Economy Meets Knowledge...</p>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img src="assets/wayang-illustration.png" alt="Wayang">
+                </div>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari layanan...">
+                </div>
+            </div>
+
+            <div class="banner-promo">
+                <img src="assets/dashboard-banner.jpg" alt="Strategi Keuangan">
+                <div style="padding:10px; background:rgba(255,255,200,0.9); font-size:11px; font-weight:bold; text-align:center;">
+                    Strategi Keuangan Cerdas: Panduan Finansial Sesuai Usia
+                </div>
+            </div>
+
+            <div class="menu-grid-container">
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="navigateTo('page-read')">
+                        <div class="icon-box"><i class="fas fa-book-open" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Read</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-vision')">
+                        <div class="icon-box"><i class="fas fa-play-circle" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Vision</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-listen')">
+                        <div class="icon-box"><i class="fas fa-microphone" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Listen</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-forum')">
+                        <div class="icon-box"><i class="fas fa-users" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Forum</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-alert')">
+                        <div class="icon-box"><i class="fas fa-bell" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Alert</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-insight')">
+                        <div class="icon-box"><i class="fas fa-chart-line" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Insights</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trending-section">
+                <div class="trending-header">
+                    <span>TRENDING</span> <i class="fas fa-chart-line" style="margin-left:5px; color:green;"></i>
+                </div>
+                <div style="background:black; height:120px; border-radius:10px; position:relative; overflow:hidden;">
+                    <img src="assets/stock-bg.jpg" style="opacity:0.6; width:100%; height:100%; object-fit:cover;">
+                    <div style="position:absolute; bottom:10px; left:10px; color:white; font-size:10px;">IHSG Menguat...</div>
+                    <i class="fas fa-pause" style="position:absolute; top:50%; left:20px; color:white;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-alert" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <div style="background:white; padding:5px 15px; border-radius:5px; flex-grow:1; display:flex; align-items:center;">
+                    <i class="fas fa-bell" style="color:green; margin-right:5px;"></i>
+                    <span style="color:#333; font-weight:bold;">ECONO ALERT</span>
+                </div>
+            </div>
+            <div class="search-container">
+                <div class="search-box" style="background:#fffecd;">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari notifikasi...">
+                </div>
+            </div>
+            
+            <div class="alert-list">
+                <div style="font-size:11px; color:#666; margin-bottom:10px;">All inboxes</div>
+                
+                <div class="alert-item">
+                    <div class="alert-icon"><img src="assets/icon-bi.png" alt="BI"></div>
+                    <div class="alert-content">
+                        <div class="alert-title">BREAKING: Bank Indonesia</div>
+                        <div class="alert-desc">Mempertahankan suku bunga acuan di level 5,25%...</div>
+                    </div>
+                    <div class="alert-meta">
+                        <span class="alert-date">30 Feb</span>
+                        <i class="far fa-star alert-star"></i>
+                    </div>
+                </div>
+                <div class="alert-item">
+                    <div class="alert-icon"><img src="assets/icon-money.png" alt="Rupiah"></div>
+                    <div class="alert-content">
+                        <div class="alert-title">UPDATE: Rupiah Menguat</div>
+                        <div class="alert-desc">Rupiah menguat 1,2% terhadap Dolar AS di pasar pagi...</div>
+                    </div>
+                    <div class="alert-meta">
+                        <span class="alert-date">30 Feb</span>
+                        <i class="far fa-star alert-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-forum" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <span style="font-weight:bold; font-size:16px;">ECONO FORUM</span>
+            </div>
+            <div class="forum-container">
+                <div class="forum-header-avatars">
+                    <div class="avatar-circle"><img src="assets/p1.jpg" style="width:100%"></div>
+                    <div class="avatar-circle"><img src="assets/p2.jpg" style="width:100%"></div>
+                    <div class="avatar-circle"><img src="assets/p3.jpg" style="width:100%"></div>
+                    <div class="avatar-circle"><img src="assets/p4.jpg" style="width:100%"></div>
+                </div>
+
+                <div class="forum-card">
+                    <h4>EKOFORUM INDONESIA</h4>
+                    <p>@EkonomiPakar memulai diskusi baru: Dampak Inflasi...</p>
+                    <div class="forum-footer">
+                        <span><i class="far fa-heart forum-icon"></i> Mar 5, 2026</span>
+                        <span>10:30 WIB</span>
+                    </div>
+                </div>
+                
+                <div class="forum-card">
+                    <h4>DIANDRA EKONOMI</h4>
+                    <p>@InvestorMuda membalas komentar Anda: Menurut...</p>
+                    <div class="forum-footer">
+                        <span><i class="far fa-comment forum-icon"></i> Mar 5, 2026</span>
+                        <span>11:10 WIB</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-read" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <span style="font-weight:bold;">ECONO READ</span>
+            </div>
+            <div class="book-list">
+                <div class="book-item">
+                    <img src="assets/book1.jpg" class="book-cover">
+                    <div class="book-info">
+                        <h3>PEMASARAN GLOBAL</h3>
+                        <p>Wawasan Praktis dan Analisis Internasional</p>
+                        <p style="margin-top:5px; color:#444;">Carlyle Farrell</p>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <img src="assets/book2.jpg" class="book-cover">
+                    <div class="book-info">
+                        <h3>BISNIS DAN EKONOMI DIGITAL</h3>
+                        <p>Sebuah Transformasi Ekonomi di Era Digital</p>
+                        <p style="margin-top:5px; color:#444;">Dr. Gidian P.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-vision" class="page-section">
+             <div style="position:absolute; top:20px; left:20px; z-index:10;">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+            </div>
+            
+            <div class="vision-wrapper">
+                <img src="assets/vision-person.jpg" class="vision-video" alt="Video Feed">
+                
+                <div class="vision-sidebar">
+                    <div class="action-icon"><i class="fas fa-plus-circle" style="color:white;"></i></div>
+                    <div class="action-icon"><i class="fas fa-heart"></i><br><span style="font-size:10px;">1.2k</span></div>
+                    <div class="action-icon"><i class="fas fa-comment-dots"></i><br><span style="font-size:10px;">300</span></div>
+                    <div class="action-icon"><i class="fas fa-share"></i></div>
+                </div>
+
+                <div class="vision-overlay">
+                    <h4 style="margin-bottom:5px;">@EconoCoach</h4>
+                    <p style="font-size:12px;">Tips mengatur keuangan untuk Gen Z agar tidak boncos! #Finance #Tips</p>
+                </div>
+                
+                <div style="position:absolute; bottom:0; left:0; height:3px; width:40%; background:white; z-index:5;"></div>
+            </div>
+        </div>
+
+        <div id="page-listen" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <span style="font-weight:bold;">ECONO LISTEN</span>
+            </div>
+            <div style="padding:15px;">
+                <div style="background:white; border-radius:10px; overflow:hidden; margin-bottom:15px; border:2px solid purple;">
+                    <div style="display:flex;">
+                        <img src="assets/podcast1.jpg" style="width:100px; height:80px; object-fit:cover;">
+                        <div style="padding:10px;">
+                            <h5 style="font-size:11px; margin-bottom:5px;">CUAN DARI KONTEN</h5>
+                            <p style="font-size:9px;">Membahas peluang ekonomi digital...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-insight" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <span style="font-weight:bold;">ECONO INSIGHTS</span>
+            </div>
+            <div class="insight-card">
+                <img src="assets/chart1.jpg" class="insight-img">
+                <div class="insight-text">
+                    <h4>IHSG Awal Maret Menguat, Saham BBRI Diborong</h4>
+                </div>
+            </div>
+            <div class="insight-card">
+                <img src="assets/chart2.jpg" class="insight-img">
+                <div class="insight-text">
+                    <h4>IHSG Rebound Tembus 6.500</h4>
+                </div>
+            </div>
+        </div>
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item" onclick="navigateTo('page-dashboard')">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-history"></i>
+                <span>Riwayat</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user-circle"></i>
+                <span>Profil</span>
+            </a>
+        </nav>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
