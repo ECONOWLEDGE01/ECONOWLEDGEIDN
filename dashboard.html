@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Econowledge Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style-base.css">
+    <link rel="stylesheet" href="style-ui.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div id="page-dashboard" class="page-section active">
+            <header>
+                <div class="logo">
+                    <img src="assets/logo-econowledge.png" alt="Econowledge Logo" style="background:white; border-radius:5px; padding:2px;">
+                </div>
+                <a href="login.html" class="menu-burger" style="text-decoration:none;"><i class="fas fa-sign-out-alt"></i></a>
+            </header>
+
+            <div class="hero-section">
+                <div class="hero-text">
+                    <div class="avatar-small" style="display:inline-block; vertical-align:middle; width:40px; height:40px; background:white; border-radius:50%; margin-right:10px;">
+                        <img src="assets/mask-icon.png" alt="User" style="width:100%; border-radius:50%;">
+                    </div>
+                    <div style="display:inline-block; vertical-align:middle;">
+                        <h2>Halo! Eno People</h2>
+                        <p>Economy Meets Knowledge...</p>
+                    </div>
+                </div>
+                <div class="hero-img">
+                    <img src="assets/wayang-illustration.png" alt="Wayang">
+                </div>
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Cari layanan...">
+                </div>
+            </div>
+
+            <div class="banner-promo">
+                <img src="assets/dashboard-banner.jpg" alt="Strategi Keuangan">
+                <div style="padding:10px; background:rgba(255,255,200,0.9); font-size:11px; font-weight:bold; text-align:center;">
+                    Strategi Keuangan Cerdas: Panduan Finansial Sesuai Usia
+                </div>
+            </div>
+
+            <div class="menu-grid-container">
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="navigateTo('page-read')">
+                        <div class="icon-box"><i class="fas fa-book-open" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Read</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-vision')">
+                        <div class="icon-box"><i class="fas fa-play-circle" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Vision</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-listen')">
+                        <div class="icon-box"><i class="fas fa-microphone" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Listen</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-forum')">
+                        <div class="icon-box"><i class="fas fa-users" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Forum</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-alert')">
+                        <div class="icon-box"><i class="fas fa-bell" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Alert</span>
+                    </div>
+                    <div class="menu-item" onclick="navigateTo('page-insight')">
+                        <div class="icon-box"><i class="fas fa-chart-line" style="color:#558b2f; font-size:24px;"></i></div>
+                        <span class="menu-label">Econo Insights</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trending-section">
+                <div class="trending-header">
+                    <span>TRENDING</span> <i class="fas fa-chart-line" style="margin-left:5px; color:green;"></i>
+                </div>
+                <div style="background:black; height:120px; border-radius:10px; position:relative; overflow:hidden;">
+                    <img src="assets/stock-bg.jpg" style="opacity:0.6; width:100%; height:100%; object-fit:cover;">
+                    <div style="position:absolute; bottom:10px; left:10px; color:white; font-size:10px;">IHSG Menguat...</div>
+                    <i class="fas fa-pause" style="position:absolute; top:50%; left:20px; color:white;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-alert" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <div style="background:white; padding:5px 15px; border-radius:5px; flex-grow:1; display:flex; align-items:center;">
+                    <i class="fas fa-bell" style="color:green; margin-right:5px;"></i>
+                    <span style="color:#333; font-weight:bold;">ECONO ALERT</span>
+                </div>
+            </div>
+            <div class="alert-list">
+                <div class="alert-item">
+                    <div class="alert-icon"><img src="assets/icon-bi.png"></div>
+                    <div class="alert-content">
+                        <div class="alert-title">BREAKING: Bank Indonesia</div>
+                        <div class="alert-desc">Mempertahankan suku bunga acuan...</div>
+                    </div>
+                    <div class="alert-meta"><span class="alert-date">30 Feb</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-forum" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <span style="font-weight:bold;">ECONO FORUM</span>
+            </div>
+            <div class="forum-container">
+                 <div class="forum-card">
+                    <h4>EKOFORUM INDONESIA</h4>
+                    <p>Diskusi hangat mengenai dampak inflasi...</p>
+                    <div class="forum-footer"><span>Mar 5, 2026</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-read" class="page-section">
+            <div class="sub-header">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+                <span style="font-weight:bold;">ECONO READ</span>
+            </div>
+            <div class="book-list">
+                <div class="book-item">
+                    <div class="book-cover" style="background:#ddd;"></div>
+                    <div class="book-info"><h3>PEMASARAN GLOBAL</h3><p>Carlyle Farrell</p></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="page-vision" class="page-section">
+            <div style="position:absolute; top:20px; left:20px; z-index:10;">
+                <div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div>
+            </div>
+            <div class="vision-wrapper">
+                <img src="assets/vision-person.jpg" class="vision-video">
+                <div class="vision-sidebar">
+                    <div class="action-icon"><i class="fas fa-heart"></i></div>
+                    <div class="action-icon"><i class="fas fa-share"></i></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="page-listen" class="page-section"><div class="sub-header"><div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div><span>LISTEN</span></div></div>
+        <div id="page-insight" class="page-section"><div class="sub-header"><div class="back-btn" onclick="navigateTo('page-dashboard')"><i class="fas fa-chevron-left"></i></div><span>INSIGHT</span></div></div>
+
+
+        <nav class="bottom-nav">
+            <a href="#" class="nav-item" onclick="navigateTo('page-dashboard')"><i class="fas fa-home"></i><span>Home</span></a>
+            <a href="#" class="nav-item"><i class="fas fa-history"></i><span>Riwayat</span></a>
+            <a href="#" class="nav-item"><i class="fas fa-user-circle"></i><span>Profil</span></a>
+        </nav>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
