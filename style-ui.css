@@ -161,11 +161,6 @@
     background: #f9f9f9;
 }
 
-/* --- DASHBOARD QUICK FIX --- */
-/* (Agar tidak merusak tampilan dashboard saat file dipisah) */
-.active { display: block !important; }
-.page-section { display: none; }
-
 /* --- DASHBOARD UI --- */
 .hero-section {
     padding: 15px 20px;
