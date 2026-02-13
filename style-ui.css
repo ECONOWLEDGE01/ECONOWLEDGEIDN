@@ -1,0 +1,267 @@
+/* --- DASHBOARD UI --- */
+.hero-section {
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-text h2 {
+    font-size: 18px;
+    font-weight: 700;
+}
+.hero-text p {
+    font-size: 12px;
+    font-style: italic;
+}
+.hero-img {
+    width: 100px; /* Ilustrasi Wayang/Orang */
+}
+
+.banner-promo {
+    margin: 10px 20px;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    position: relative;
+    border: 3px solid white; /* Border batik look */
+}
+.banner-promo img {
+    width: 100%;
+    display: block;
+}
+
+/* GRID MENU (6 ICONS) */
+.menu-grid-container {
+    padding: 20px;
+    /* Background motif wayang bisa ditambahkan di sini via url() */
+    background-image: url('assets/bg-pattern-wayang.png'); 
+    background-size: cover;
+    background-blend-mode: overlay;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.icon-box {
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.3);
+    border: 2px solid #8bc34a;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+.icon-box:active { transform: scale(0.95); }
+
+.icon-box img {
+    width: 40px;
+}
+
+.menu-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #4a6c2f;
+    text-transform: uppercase;
+}
+
+/* TRENDING SLIDER */
+.trending-section {
+    background: #dcdcdc;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    position: relative;
+    border: 1px solid #999;
+}
+.trending-header {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+/* --- ECONO ALERT (Inbox Style) --- */
+.alert-list {
+    background: white;
+    margin: 15px;
+    border-radius: 10px;
+    padding: 10px;
+    height: 70vh;
+    overflow-y: auto;
+}
+
+.alert-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.alert-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+.alert-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+.alert-content {
+    flex-grow: 1;
+}
+.alert-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 2px;
+}
+.alert-desc {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.3;
+}
+.alert-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-left: 5px;
+}
+.alert-date { font-size: 10px; color: #999; }
+.alert-star { color: #ccc; font-size: 14px; margin-top: 5px; }
+
+/* --- ECONO FORUM --- */
+.forum-container {
+    padding: 15px;
+}
+.forum-header-avatars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.avatar-circle {
+    width: 50px;
+    height: 50px;
+    background: #ccc;
+    border-radius: 50%;
+    border: 2px solid white;
+    overflow: hidden;
+}
+
+.forum-card {
+    background: #f5f5f5;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.forum-card h4 { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 5px; }
+.forum-card p { font-size: 11px; color: #666; margin-bottom: 10px; }
+.forum-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: #888;
+}
+.forum-icon { color: #fbc02d; font-size: 14px; margin-right: 5px; }
+
+/* --- ECONO READ (Book List) --- */
+.book-list {
+    padding: 15px 20px;
+}
+.book-item {
+    background: rgba(255,255,255,0.6);
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.book-cover {
+    width: 60px;
+    height: 85px;
+    background: #ddd;
+    margin-right: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+    object-fit: cover;
+}
+.book-info h3 { font-size: 13px; font-weight: bold; color: #222; margin-bottom: 5px; }
+.book-info p { font-size: 11px; color: #555; font-style: italic; }
+
+/* --- ECONO VISION (TikTok Style) --- */
+.vision-wrapper {
+    position: relative;
+    height: calc(100vh - 80px); /* Full height minus nav */
+    background: black;
+    overflow: hidden;
+}
+.vision-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.vision-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    right: 60px; /* Space for sidebar icons */
+    color: white;
+    z-index: 2;
+}
+.vision-sidebar {
+    position: absolute;
+    right: 10px;
+    bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    z-index: 3;
+}
+.action-icon {
+    color: white;
+    font-size: 24px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+
+/* --- ECONO INSIGHTS --- */
+.insight-card {
+    background: white;
+    margin: 15px 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.insight-img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    background: #222; /* Placeholder chart bg */
+}
+.insight-text {
+    padding: 10px;
+}
+.insight-text h4 { font-size: 12px; font-weight: bold; }
