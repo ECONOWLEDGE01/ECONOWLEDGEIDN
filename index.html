@@ -1,71 +1,655 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login | Econowledge</title>
-    
-    <link rel="stylesheet" href="style-base.css">
-    <link rel="stylesheet" href="style-ui.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>EcoNowledge — Prototype (Single File)</title>
+
+<!-- =========================
+     ALL CSS (base + ui + effects)
+     Single-file safe (append only)
+     ========================= -->
+<style>
+:root{
+  --primary: #66bb2f;
+  --primary-dark: #4e9a22;
+  --primary-darker: #2e7d32;
+  --accent: #ffd84d;
+  --bg-start: #f9f871;
+  --bg-mid: #dff3c5;
+  --bg-end: #7bc043;
+  --card-bg: #ffffff;
+  --muted: #6b6b6b;
+  --glass: rgba(255,255,255,0.22);
+  --border: #1a1a1a;
+  --radius-lg: 16px;
+}
+
+/* Reset & base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: "Poppins", system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  background: linear-gradient(180deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color:#222;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* decorative gunungan background (SVG via CSS) */
+.body-watermark {
+  pointer-events:none;
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05), transparent 10%),
+    radial-gradient(circle at 90% 80%, rgba(0,0,0,0.03), transparent 10%);
+  z-index:0;
+}
+
+/* container for app */
+.app {
+  width:100%;
+  max-width:420px;
+  margin:18px auto;
+  background:transparent;
+  z-index:2;
+  position:relative;
+}
+
+/* Header (green band w/ logo) */
+.header {
+  background: linear-gradient(90deg,var(--primary) 0%, var(--primary-dark) 100%);
+  color:#fff;
+  border-bottom-left-radius:28px;
+  border-bottom-right-radius:28px;
+  padding:14px 14px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.12);
+  position:relative;
+  overflow:visible;
+}
+
+/* simple inline logo (svg) */
+.logo-row{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.logo-bubble{
+  display:flex;align-items:center;gap:10px;
+}
+.logo-svg{
+  width:44px;height:44px;border-radius:8px;
+  background:linear-gradient(180deg,#fff 0%, rgba(255,255,255,0.9) 60%);
+  padding:6px; box-shadow:0 3px 8px rgba(0,0,0,0.12);
+}
+.logo-text{
+  font-weight:800;font-size:16px;letter-spacing:0.2px;
+}
+
+/* login card (center) */
+.login-card {
+  margin-top:18px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(255,255,255,0.9));
+  border-radius:18px;
+  padding:20px;
+  border: 2px solid var(--border);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.08);
+}
+
+/* input / buttons */
+.field{display:block;margin:12px 0}
+.input{
+  width:100%;padding:12px 14px;border-radius:10px;border:2px solid var(--border);
+  background:#fff;font-weight:600;outline:none;
+}
+.input::placeholder{color:#C8C8C8;font-weight:600}
+.btn{
+  display:inline-block;padding:10px 18px;border-radius:12px;border:2px solid var(--border);
+  background: linear-gradient(180deg,#FFA726 0%, #F57C00 100%);
+  color:#fff;font-weight:800;text-decoration:none;cursor:pointer;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.08);
+}
+.small-txt{font-size:12px;color:#fff;opacity:0.95}
+.agreement{font-size:12px;color:#fff;margin-top:8px}
+
+/* Dashboard / app layout */
+.app-main{display:none; margin-top:12px}
+.app-main.active{display:block}
+
+/* welcome hero */
+.hero{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.9));
+  border-radius:16px;padding:12px 12px;margin-bottom:12px;border-left:10px solid var(--accent);
+  position:relative;overflow:visible;box-shadow:0 8px 24px rgba(0,0,0,0.08)
+}
+.hero-row{display:flex;gap:10px;align-items:center}
+.hero-avatar{
+  width:64px;height:64px;border-radius:999px;background:#fff;border:6px solid rgba(255,255,255,0.6);
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+  display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--primary-darker)
+}
+.hero-title{font-size:20px;font-weight:800;color:var(--primary-darker)}
+.hero-sub{font-size:12px;color:#555}
+
+/* search */
+.search {
+  margin:12px 0;
+  background: var(--accent);
+  border-radius:999px;padding:10px;border:2px solid var(--border);
+  display:flex;align-items:center;gap:10px;
+}
+.search input{border:none;background:transparent;outline:none;padding:8px;font-weight:700;color:var(--border)}
+
+/* Tabs (navigation row of feature icons) */
+.tabs {
+  display:flex;gap:10px;justify-content:space-between;margin-bottom:12px;
+}
+.tab {
+  flex:1;padding:10px;border-radius:12px;background:linear-gradient(180deg,#cde77f,#e7f7c9);
+  border:2px solid var(--border);text-align:center;cursor:pointer;font-weight:800;color:var(--primary-darker);
+  box-shadow:0 6px 12px rgba(0,0,0,0.06);
+}
+.tab.active{background:linear-gradient(180deg,var(--primary),var(--primary-dark));color:#fff;box-shadow:0 10px 20px rgba(0,0,0,0.12)}
+
+/* content area */
+.section{display:none;background:var(--card-bg);border-radius:14px;padding:12px;margin-bottom:12px;border:2px solid rgba(0,0,0,0.04);box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+.section.active{display:block}
+
+/* list items (cards) */
+.list-card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));
+  border-radius:12px;padding:12px;margin-bottom:12px;border:2px solid #d6e7c7;
+  display:flex;gap:10px;align-items:flex-start;box-shadow:0 6px 18px rgba(0,0,0,0.04)
+}
+.list-thumb{
+  width:78px;height:58px;border-radius:8px;background:linear-gradient(135deg,#e8f5e9,#d6f0be);
+  display:flex;align-items:center;justify-content:center;color:var(--primary-darker);font-weight:800;border:2px solid rgba(0,0,0,0.06)
+}
+.list-body h4{font-size:14px;margin-bottom:6px;color:var(--primary-darker)}
+.list-body p{font-size:12px;color:var(--muted);line-height:1.35}
+
+/* badges & meta */
+.badge{display:inline-block;background:rgba(255,255,255,0.95);border-radius:12px;padding:4px 8px;border:1px solid var(--border);font-weight:700;font-size:11px}
+.meta{font-size:11px;color:var(--muted);margin-top:8px;display:block}
+
+/* audio/video styling */
+.media-wrap audio, .media-wrap video{width:100%;border-radius:10px;display:block;margin-top:8px}
+
+/* bottom nav (floating) */
+.bottom-nav{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:18px;max-width:420px;width:90%;
+  display:flex;justify-content:space-around;background:linear-gradient(180deg,var(--primary),var(--primary-dark));
+  padding:8px;border-radius:40px;box-shadow:0 10px 30px rgba(0,0,0,0.2);z-index:20
+}
+.bottom-nav a{color:#fff;text-decoration:none;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.bottom-nav a.active i{transform:scale(1.08);filter:drop-shadow(0 3px 6px rgba(0,0,0,0.24))}
+
+/* micro-interactions */
+.btn:active{transform:translate(2px,2px)}
+.list-card:hover{transform:translateY(-4px);transition:all .18s ease}
+.tab:active{transform:scale(.98)}
+
+/* responsive */
+@media (min-width:900px){
+  .app{max-width:540px}
+  .hero-row{gap:16px}
+}
+</style>
 </head>
 <body>
 
-    <div class="app-container">
-        
-        <header class="login-header">
-            <img src="assets/logo-econowledge.png" alt="Econowledge Logo" class="img-logo">
-        </header>
+<div class="body-watermark" aria-hidden="true"></div>
 
-        <section class="login-section">
-            <div class="login-batik-frame">
-                
-                <div class="login-card-inner">
-                    <h1 class="ui-title-bold">Selamat Datang</h1>
-                    
-                    <form action="dashboard.html">
-                        <div class="ui-form-group">
-                            <input type="email" placeholder="Email address" class="ui-input-field" required>
-                        </div>
-                        <div class="ui-form-group">
-                            <input type="password" placeholder="Enter password" class="ui-input-field" required>
-                        </div>
-                        
-                        <div class="form-utils">
-                            <div style="display:flex; align-items:center; gap:5px;">
-                                <input type="checkbox" id="remember">
-                                <label for="remember" style="font-size: 12px; font-weight: 600; color:#555;">Remember me</label>
-                            </div>
-                            <a href="#" style="font-size:11px; color:var(--primary-green); text-decoration:none;">Lupa Password?</a>
-                        </div>
+<div class="app" role="application" aria-label="EcoNowledge prototype">
 
-                        <button type="submit" class="ui-btn-signup">Sign up</button>
+  <!-- HEADER -->
+  <div class="header" role="banner">
+    <div class="logo-row" style="align-items:center">
+      <div class="logo-bubble">
+        <!-- inline SVG logo -->
+        <div class="logo-svg" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" fill="#f9f871"/>
+            <path d="M20 36c4-8 24-8 24-8s-8 6-12 10-12-2-12-2z" fill="#66bb2f"/>
+            <path d="M32 16c3 4 4 8 0 12-4-4-3-8 0-12z" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="logo-text">EcoNowledge</div>
+      </div>
 
-                        <div class="agreement-box" style="margin-top: 15px;">
-                            <input type="checkbox" required>
-                            <span>I agree to the <a href="#">Terms</a> & <a href="#">Privacy Policy</a>.</span>
-                        </div>
-
-                        <div style="margin: 20px 0; font-size: 11px; opacity: 0.8; text-align:center;">or sign up with</div>
-
-                        <div class="social-flex">
-                            <button type="button" class="btn-social">
-                                <i class="fab fa-facebook-f" style="color: #1877F2;"></i>
-                            </button>
-                            <button type="button" class="btn-social">
-                                <i class="fab fa-google" style="color: #DB4437;"></i>
-                            </button>
-                            <button type="button" class="btn-social">
-                                <i class="fab fa-apple" style="color: #000;"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button id="openLogin" class="badge" style="background:rgba(255,255,255,0.12);color:#fff;border:1px solid rgba(255,255,255,0.18)">Login</button>
+      </div>
     </div>
+  </div>
+
+  <!-- LOGIN CARD (index view) -->
+  <div id="loginView" class="login-card" role="main" aria-label="Login">
+    <h1 class="ui-title" style="font-size:20px;color:#fff;background:linear-gradient(90deg,var(--primary),var(--primary-dark));padding:10px;border-radius:10px;text-align:center">Selamat Datang</h1>
+    <p style="margin-top:12px;color:#fff;font-weight:700;text-shadow:1px 1px 0 rgba(0,0,0,0.25)">EcoNowledge — Education Sustainable</p>
+
+    <div style="margin-top:16px;">
+      <label class="field">
+        <input id="email" class="input" placeholder="Email address" type="email" />
+      </label>
+      <label class="field">
+        <input id="password" class="input" placeholder="Enter password" type="password" />
+      </label>
+
+      <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;margin-top:8px">
+        <label style="display:flex;gap:8px;align-items:center;color:#fff"><input id="remember" type="checkbox" /> <small style="font-weight:800">Remember me</small></label>
+        <a href="#" style="color:#fff;text-decoration:underline;font-weight:700">Lupa password?</a>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button id="btnLogin" class="btn">Login</button>
+        <button id="btnSignup" class="btn" style="background:linear-gradient(180deg,#9ccc65,#66bb6a)">Sign up</button>
+      </div>
+
+      <p class="agreement" style="margin-top:12px">Dengan masuk Anda menyetujui <strong>Terms of Service</strong> & <strong>Privacy Policy</strong></p>
+    </div>
+  </div>
+
+  <!-- MAIN APP (hidden until login) -->
+  <div id="appMain" class="app-main" aria-hidden="true">
+
+    <!-- HERO -->
+    <div class="hero" role="region" aria-label="Welcome">
+      <div class="hero-row">
+        <div class="hero-avatar" id="heroAvatar">EN</div>
+        <div>
+          <div class="hero-title" id="heroTitle">Halo, Eno People</div>
+          <div class="hero-sub">Economy Meets Knowledge: Empowering Your Financial Future</div>
+        </div>
+        <div style="margin-left:auto">
+          <!-- decorative wayang as small svg -->
+          <svg width="88" height="88" viewBox="0 0 64 64" class="wayang" aria-hidden="true">
+            <g fill="none" stroke="#fff" stroke-opacity="0.12" stroke-width="2">
+              <path d="M4 50 C 18 30, 46 30, 60 50" stroke-linecap="round" />
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="search" style="margin-top:12px">
+        <span style="font-weight:900;color:var(--border)">🔍</span>
+        <input id="globalSearch" placeholder="Cari materi, topik, atau penulis..." />
+      </div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs" role="tablist" aria-label="Feature Tabs">
+      <div class="tab active" data-tab="read" role="tab" aria-selected="true">📚 READ</div>
+      <div class="tab" data-tab="vision" role="tab">📊 VISION</div>
+      <div class="tab" data-tab="listen" role="tab">🎧 LISTEN</div>
+      <div class="tab" data-tab="forum" role="tab">💬 FORUM</div>
+      <div class="tab" data-tab="alert" role="tab">🚨 ALERT</div>
+      <div class="tab" data-tab="insights" role="tab">💡 INSIGHTS</div>
+    </div>
+
+    <!-- SECTIONS (all in one file, toggle by JS) -->
+    <section id="read" class="section active" role="region" aria-labelledby="read-tab">
+      <!-- header -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="background:var(--card-bg);padding:8px;border-radius:8px;border:2px solid var(--border)">📗</div>
+        <div>
+          <h3 style="margin:0;color:var(--primary-darker)">Econo Read</h3>
+          <small style="color:var(--muted)">Koleksi artikel & ringkasan</small>
+        </div>
+      </div>
+
+      <!-- search in section -->
+      <div class="search"><span>🔎</span><input placeholder="Cari artikel mis. pemasaran global" /></div>
+
+      <!-- list -->
+      <div style="margin-top:12px">
+        <article class="list-card">
+          <div class="list-thumb">BK</div>
+          <div class="list-body">
+            <h4>Pemasaran Global: Wawasan Praktis</h4>
+            <p>Ringkasan strategi pemasaran internasional yang relevan untuk UMKM Indonesia. (oleh: Cahyla Farrel)</p>
+            <span class="meta">2025 • 8 menit baca</span>
+          </div>
+        </article>
+
+        <article class="list-card">
+          <div class="list-thumb">UM</div>
+          <div class="list-body">
+            <h4>Manajemen UMKM di Era Digital</h4>
+            <p>Strategi transformasi digital, pemasaran & logistik untuk usaha mikro.</p>
+            <span class="meta">2024 • 10 menit baca</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="vision" class="section" role="region">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="background:var(--card-bg);padding:8px;border-radius:8px;border:2px solid var(--border)">📊</div>
+        <div>
+          <h3 style="margin:0;color:var(--primary-darker)">Econo Vision</h3>
+          <small style="color:var(--muted)">Visualisasi & video edukasi</small>
+        </div>
+      </div>
+
+      <div class="search"><span>🔎</span><input placeholder="Cari video: strategi keuangan" /></div>
+
+      <div style="margin-top:12px">
+        <article class="list-card" style="flex-direction:column;align-items:stretch">
+          <div class="list-body">
+            <h4>Strategi Keuangan Cerdas untuk Pemula</h4>
+            <p>Durasi: 12:05 — Narasumber: Dr. A.F.</p>
+            <div class="media-wrap">
+              <video controls poster="" style="width:100%;border-radius:10px">
+                <source src="./media/sample-video.mp4" type="video/mp4">
+                Browser Anda tidak mendukung video HTML5.
+              </video>
+            </div>
+            <span class="meta">12 Mei 2026</span>
+          </div>
+        </article>
+
+        <article class="list-card" style="flex-direction:column;align-items:stretch">
+          <div class="list-body">
+            <h4>Membangun UMKM Digital dari Desa</h4>
+            <p>Durasi: 09:30 — Studi kasus Pasuruan</p>
+            <div class="media-wrap">
+              <video controls poster="" style="width:100%;border-radius:10px">
+                <source src="./media/sample2-video.mp4" type="video/mp4">
+                Browser Anda tidak mendukung video HTML5.
+              </video>
+            </div>
+            <span class="meta">3 Apr 2026</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="listen" class="section" role="region">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="background:var(--card-bg);padding:8px;border-radius:8px;border:2px solid var(--border)">🎧</div>
+        <div>
+          <h3 style="margin:0;color:var(--primary-darker)">Econo Listen</h3>
+          <small style="color:var(--muted)">Podcast & audio learning</small>
+        </div>
+      </div>
+
+      <div class="search"><span>🔎</span><input placeholder="Cari podcast: investasi" /></div>
+
+      <div style="margin-top:12px">
+        <article class="list-card">
+          <div class="list-thumb">🎙</div>
+          <div class="list-body">
+            <h4>Investasi untuk Pemula</h4>
+            <p>Episode 01 — Panduan dasar investasi & manajemen risiko.</p>
+            <div class="media-wrap">
+              <audio controls>
+                <source src="./media/sample-audio.mp3" type="audio/mpeg">
+                Browser Anda tidak mendukung audio.
+              </audio>
+            </div>
+            <span class="meta">Durasi 18:23 • 05 Jan 2026</span>
+          </div>
+        </article>
+
+        <article class="list-card">
+          <div class="list-thumb">🎙</div>
+          <div class="list-body">
+            <h4>UMKM & Transformasi Digital</h4>
+            <p>Dialog praktisi: penerapan QRIS dan strategi pemasaran digital.</p>
+            <div class="media-wrap">
+              <audio controls>
+                <source src="./media/sample2-audio.mp3" type="audio/mpeg">
+              </audio>
+            </div>
+            <span class="meta">Durasi 22:10 • 02 Jan 2026</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="forum" class="section" role="region">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="background:var(--card-bg);padding:8px;border-radius:8px;border:2px solid var(--border)">👥</div>
+        <div>
+          <h3 style="margin:0;color:var(--primary-darker)">Econo Forum</h3>
+          <small style="color:var(--muted)">Diskusi komunitas & pengumuman</small>
+        </div>
+      </div>
+
+      <div class="search"><span>🔎</span><input placeholder="Cari topik diskusi..." /></div>
+
+      <div style="margin-top:12px">
+        <article class="list-card">
+          <div class="list-thumb">EK</div>
+          <div class="list-body">
+            <h4>EKOFORUM INDONESIA — Dampak Inflasi</h4>
+            <p>@EkonomiPakar memulai diskusi baru: Dampak inflasi pada bahan baku UMKM.</p>
+            <span class="meta">32 komentar • 2 jam lalu</span>
+          </div>
+        </article>
+
+        <article class="list-card">
+          <div class="list-thumb">UM</div>
+          <div class="list-body">
+            <h4>Strategi Digitalisasi UMKM Jawa Timur</h4>
+            <p>Penggunaan QRIS di pasar tradisional—studi kasus Pasuruan.</p>
+            <span class="meta">18 komentar • 1 hari lalu</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="alert" class="section" role="region">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="background:var(--card-bg);padding:8px;border-radius:8px;border:2px solid var(--border)">⚠️</div>
+        <div>
+          <h3 style="margin:0;color:var(--primary-darker)">Econo Alert</h3>
+          <small style="color:var(--muted)">Notifikasi pasar & peringatan</small>
+        </div>
+      </div>
+
+      <div class="search"><span>🔎</span><input placeholder="Filter alert: IHSG, inflasi..." /></div>
+
+      <div style="margin-top:12px">
+        <article class="list-card">
+          <div class="list-thumb">AL</div>
+          <div class="list-body">
+            <h4>Inflasi Terkini — Waspada Harga Pangan</h4>
+            <p>Peningkatan harga beras dan minyak goreng di beberapa pasar regional.</p>
+            <span class="meta">Dikirim 1 jam lalu</span>
+          </div>
+        </article>
+
+        <article class="list-card">
+          <div class="list-thumb">MA</div>
+          <div class="list-body">
+            <h4>Peringatan: Perubahan Kebijakan Subsidi</h4>
+            <p>Pengumuman fiskal yang dapat memengaruhi biaya energi bagi pelaku UMKM.</p>
+            <span class="meta">Dikirim 2 hari lalu</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="insights" class="section" role="region">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
+        <div style="background:var(--card-bg);padding:8px;border-radius:8px;border:2px solid var(--border)">💡</div>
+        <div>
+          <h3 style="margin:0;color:var(--primary-darker)">Econo Insights</h3>
+          <small style="color:var(--muted)">Ringkasan pasar & rekomendasi singkat</small>
+        </div>
+      </div>
+
+      <div class="search"><span>🔎</span><input placeholder="Cari insight: IHSG, saham" /></div>
+
+      <div style="margin-top:12px">
+        <article class="list-card">
+          <div class="list-thumb">📈</div>
+          <div class="list-body">
+            <h4>IHSG Menguat: Sektor Perbankan memimpin</h4>
+            <p>Daily brief: IHSG naik 1.2% — saham perbankan mencatat volume beli besar.</p>
+            <span class="meta">12 Jan 2026 • Market</span>
+          </div>
+        </article>
+
+        <article class="list-card">
+          <div class="list-thumb">🔎</div>
+          <div class="list-body">
+            <h4>BI & UMKM: Peluang Pembiayaan Mikro</h4>
+            <p>Insight singkat tentang opsi pembiayaan mikro berbiaya rendah untuk UMKM.</p>
+            <span class="meta">09 Jan 2026 • Policy</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- bottom nav -->
+    <nav class="bottom-nav" role="navigation" aria-label="Bottom Navigation">
+      <a href="#" data-goto="read" class="active"><i>🏠</i><small>Home</small></a>
+      <a href="#" data-goto="forum"><i>💬</i><small>Forum</small></a>
+      <a href="#" data-goto="listen"><i>➕</i><small>Post</small></a>
+      <a href="#" data-goto="insights"><i>📈</i><small>Insights</small></a>
+      <a href="#" data-goto="profile"><i>👤</i><small>Profil</small></a>
+    </nav>
+  </div>
+</div>
+
+<!-- MODALS -->
+<div id="navModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:50;align-items:center;justify-content:center">
+  <div style="background:#fff;padding:20px;border-radius:12px;max-width:320px;text-align:center">
+    <div id="navModalMsg" style="font-weight:700;margin-bottom:12px">Mengalihkan...</div>
+    <div style="font-size:12px;color:#666">Jika belum berpindah, klik tombol di bawah.</div>
+    <div style="margin-top:12px"><button id="navModalClose" class="btn" style="background:linear-gradient(180deg,#66bb6a,#4caf50)">Tutup</button></div>
+  </div>
+</div>
+
+<!-- =========================
+     SCRIPT
+     ========================= -->
+<script>
+/* Basic single-file app logic:
+   - login (localStorage)
+   - tab switching
+   - bottom-nav navigation
+   - search placeholders
+*/
+
+(function(){
+  const loginView = document.getElementById('loginView');
+  const appMain = document.getElementById('appMain');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnSignup = document.getElementById('btnSignup');
+  const remember = document.getElementById('remember');
+  const email = document.getElementById('email');
+  const pwd = document.getElementById('password');
+  const heroAvatar = document.getElementById('heroAvatar');
+  const heroTitle = document.getElementById('heroTitle');
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const sections = Array.from(document.querySelectorAll('.section'));
+  const bottomLinks = Array.from(document.querySelectorAll('.bottom-nav a'));
+  const navModal = document.getElementById('navModal');
+  const navModalMsg = document.getElementById('navModalMsg');
+  const navModalClose = document.getElementById('navModalClose');
+
+  function showMain(){
+    loginView.style.display='none';
+    appMain.classList.add('active');
+    appMain.setAttribute('aria-hidden','false');
+  }
+  function showLogin(){
+    loginView.style.display='block';
+    appMain.classList.remove('active');
+    appMain.setAttribute('aria-hidden','true');
+  }
+
+  // check session
+  function checkSession(){
+    const s = localStorage.getItem('eco_session');
+    const user = localStorage.getItem('eco_user');
+    if(s && user){
+      email.value = user;
+      heroAvatar.textContent = user.split('@')[0].slice(0,2).toUpperCase();
+      heroTitle.textContent = 'Halo, ' + (user.split('@')[0]) ;
+      showMain();
+    } else {
+      showLogin();
+    }
+  }
+
+  checkSession();
+
+  // login handler (simple simulation)
+  btnLogin.addEventListener('click', function(){
+    const u = email.value.trim();
+    const p = pwd.value.trim();
+    if(!u || !p){ alert('Masukkan email & password'); return; }
+    localStorage.setItem('eco_session','1');
+    localStorage.setItem('eco_user', u);
+    if(remember.checked) localStorage.setItem('eco_remember','1');
+    heroAvatar.textContent = u.split('@')[0].slice(0,2).toUpperCase();
+    heroTitle.textContent = 'Halo, ' + (u.split('@')[0]);
+    showMain();
+  });
+
+  btnSignup.addEventListener('click', function(){
+    const u = prompt('Masukkan email untuk pendaftaran (dummy):');
+    if(u){ email.value=u; alert('Akun dummy terbuat — silakan login'); }
+  });
+
+  // Tab switching
+  function activateTab(tabName){
+    tabs.forEach(t => {
+      if(t.dataset.tab === tabName){ t.classList.add('active'); t.setAttribute('aria-selected','true'); }
+      else { t.classList.remove('active'); t.setAttribute('aria-selected','false'); }
+    });
+    sections.forEach(s => {
+      if(s.id === tabName) s.classList.add('active');
+      else s.classList.remove('active');
+    });
+    // bottom nav active
+    bottomLinks.forEach(a=>{
+      if(a.dataset.goto === tabName || (a.dataset.goto==='read' && tabName==='read')) a.classList.add('active');
+      else a.classList.remove('active');
+    });
+    // scroll to top of app area for mobile feel
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  tabs.forEach(t=>t.addEventListener('click', ()=>activateTab(t.dataset.tab)));
+  bottomLinks.forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const goto = a.dataset.goto || 'read';
+      // show modal to simulate loading
+      navModalMsg.innerHTML = 'Sedang membuka ' + (goto.toUpperCase()) + '...';
+      navModal.style.display='flex';
+      setTimeout(()=>{ navModal.style.display='none'; activateTab(goto); }, 450);
+    });
+  });
+
+  // modal close
+  navModalClose.addEventListener('click', ()=>navModal.style.display='none');
+
+  // small searches (no backend)
+  document.querySelectorAll('.search input').forEach(inp=>{
+    inp.addEventListener('keydown', (e)=>{
+      if(e.key==='Enter'){ alert('Pencarian cepat: ' + inp.value); }
+    });
+  });
+
+  // navigation helper openLogin (header)
+  document.getElementById('openLogin').addEventListener('click', ()=>{
+    // open login modal or go to login view - if logged in, go to dashboard
+    if(localStorage.getItem('eco_session')){ alert('Anda sudah login'); } else { window.scrollTo({top:0,behavior:'smooth'}) }
+  });
+
+  // logout via clearing storage from console or add button if needed
+  window.logoutEco = function(){ localStorage.clear(); showLogin(); alert('Anda telah keluar'); };
+
+})();
+</script>
 
 </body>
 </html>
